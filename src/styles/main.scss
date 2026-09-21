@@ -41,7 +41,9 @@ html {
     border: 1px solid $border-color;
     background-color: $day-bg;
     cursor: pointer;
-    transition: all 0.5s ease;
+    transition:
+      transform 0.5s ease,
+      background-color 0.5s ease;
 
     &:hover {
       background-color: $hover-bg;
@@ -60,16 +62,7 @@ html {
     }
   }
 
-  // Mapeamento correto com Domingo (sun) no índice 0
-  $days: (
-    'sun': 0,
-    'mon': 1,
-    'tue': 2,
-    'wed': 3,
-    'thu': 4,
-    'fri': 5,
-    'sat': 6,
-  );
+  // Mapeamento que coloca 'sun' no indice 6 para alinhar a referencia visual
   $days: (
     'mon': 0,
     'tue': 1,
