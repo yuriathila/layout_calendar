@@ -20,8 +20,8 @@ html {
 
 .page {
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   min-height: 100vh;
 }
 
@@ -33,20 +33,18 @@ html {
   width: calc((#{$day-size} * 7) + (#{$gap-size} * 6) + (#{$padding-size} * 2));
 
   &__day {
-    width: $day-size;
-    height: $day-size;
-    border: 1px solid $border-color;
     display: flex;
     align-items: center;
     justify-content: center;
-    cursor: pointer;
+    width: $day-size;
+    height: $day-size;
+    border: 1px solid $border-color;
     background-color: $day-bg;
-    transition: background-color 0.5s ease;
+    cursor: pointer;
+    transition: all 0.5s ease;
 
     &:hover {
       background-color: $hover-bg;
-      cursor: pointer;
-      transition: all 0.5s ease;
       transform: translateY(-20px);
     }
 
@@ -58,30 +56,29 @@ html {
 
   @for $i from 1 through 31 {
     &__day:nth-child(#{$i})::before {
-      content: '#{$i}';
+      content: "#{$i}";
     }
   }
 
+  // Mapeamento correto com Domingo (sun) no índice 0
   $days: (
-    'mon': 0,
-    'tue': 1,
-    'wed': 2,
-    'thu': 3,
-    'fri': 4,
-    'sat': 5,
-    'sun': 6,
+    "sun": 0,
+    "mon": 1,
+    "tue": 2,
+    "wed": 3,
+    "thu": 4,
+    "fri": 5,
+    "sat": 6
   );
 
   @each $day, $index in $days {
-    &--start-day-#{$day} &__day:first-child,
-    &--start-day--#{$day} &__day:first-child {
+    &--start-day-#{$day} &__day:first-child {
       margin-left: calc((#{$day-size} + #{$gap-size}) * #{$index});
     }
   }
 
   @for $i from 28 through 31 {
-    &--month-length-#{$i} &__day:nth-child(n + #{$i + 1}),
-    &--month-length--#{$i} &__day:nth-child(n + #{$i + 1}) {
+    &--month-length-#{$i} &__day:nth-child(n + #{$i + 1}) {
       display: none;
     }
   }
